@@ -25,6 +25,7 @@
             { id: 3, name: 'zhongwang', content: 'my name is zhongwang' },
         ]
         function fn(e){
+            // 判断节点
             if(e.target.nodeName === 'A') return 
             console.log(e.target.textContent)
             e.preventDefault()
