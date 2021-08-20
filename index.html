@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .list {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+    <script type="text/babel">
+        const list = [
+            { id: 1, name: 'laowang', content: 'my name is laowang' },
+            { id: 2, name: 'xiaowang', content: 'my name is xiaowang' },
+            { id: 3, name: 'zhongwang', content: 'my name is zhongwang' },
+        ]
+        function fn(e){
+            if(e.target.nodeName === 'A') return 
+            console.log(e.target.textContent)
+            e.preventDefault()
+        }
+        const uls = <ul>{list.map(item => <li key={item.id} className='list'>
+            <a href="#" onClick = {fn}>
+                <p style={{color: 'red', fontSize: 30, backgroundColor: 'skyblue'}}>{item.name}</p>
+                <p style={{color: 'tomato', fontSize: 30, backgroundColor: 'yellow'}}>{item.content}</p>  
+            </a>
+        </li>)}</ul>
+        const box = list.length ? uls : <h1>暂无数据</h1>
+        ReactDOM.render(box, document.getElementById('root'))
+    </script>
+</body>
+
+</html>
