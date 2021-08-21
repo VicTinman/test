@@ -1,17 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+class Test extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            name: 'laowang',
+            count: 0
+        }
+        // 将原型上的方法，通过bind给此方法添加this后，返回的新方法赋值给实例化对象上的fn，此时实例化对象上有了该方法。
+        this.fn = this.fn.bind(this)
+    }
+    fn(){
+        this.setState({
+            count: this.state.count + 1
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+        })
+    }
+    render() {
+        return (
+            <div>
+                <div>{this.state.name}</div>
+                <div>{this.state.count}</div>
+                <button onClick={this.fn}>点击</button>
+            </div>
+
+        )
+    }
+}
+ReactDOM.render(<Test />, document.getElementById('root'))
